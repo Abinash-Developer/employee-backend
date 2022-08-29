@@ -3,6 +3,7 @@ const { MongoError } = require('../../../utils/handler/error');
 
 const registerEmployeeAdminDal = async (reqBody) => {
     try {
+         
         let result = await adminDao.saveAdmin(reqBody);
         let userdata = JSON.parse(JSON.stringify(result));
         delete userdata.password;
@@ -93,6 +94,81 @@ const updateEmployeeDal = async (id, reqBody) => {
       }
   }
 
+  const addHolidayAdminDal = async (reqBody) => {
+    try{
+      const addHolidayAdmin = await adminDao.addHolidayAdminModel(reqBody);
+      return addHolidayAdmin;
+    }catch(error){
+     throw error;
+    }
+  }
+const getHolidayAdminDal = async () =>{
+  try{
+    const getHolidayAdmin = await adminDao.getHolidayAdminModel();
+    return getHolidayAdmin;
+  }catch(error){
+   throw error;
+  }
+}
+const getEmpLeaveDetailDal = async (id) =>{
+  try{
+    const getEmpLeaveDetail = await adminDao.getEmpLeaveDetailModel(id);
+    return getEmpLeaveDetail;
+  }catch(error){
+   throw error;
+  }
+}
+
+const getHolidayByIdDal = async (id) =>{
+  try{
+    const getHolidayById = await adminDao.getHolidayByIdModel(id);
+    return getHolidayById;
+  }catch(error){
+   throw error;
+  }
+}
+const updateHolidayDal = async (reqBody,id) => {
+  try{
+    const updateHoliday = await adminDao.updateHolidayModel(reqBody,id);
+    return updateHoliday;
+  }catch(error){
+   throw error;
+  }
+}
+const deleteHolidayDal = async (id) => {
+  try{
+    const deleteHoliday = await adminDao.deleteHolidayModel(id);
+    return deleteHoliday;
+  }catch(error){
+   throw error;
+  }
+}
+
+const employeeWorkStatusDal = async () => {
+  try{
+    const employeeWorkStatus = await adminDao.employeeWorkStatusModel();
+    return employeeWorkStatus;
+  }catch(error){
+   throw error;
+  }
+}
+const getemployeeWorkStatusDal = async (id) => {
+  try{
+    const getemployeeWorkStatus = await adminDao.getemployeeWorkStatusModel(id);
+    return getemployeeWorkStatus;
+  }catch(error){
+   throw error;
+  }
+}
+const viewEmployeeWorkStatusDal = async (id) => {
+  try{
+    const viewEmployeeWorkStatus = await adminDao.viewEmployeeWorkStatusModel(id);
+    return viewEmployeeWorkStatus;
+  }catch(error){
+   throw error;
+  }
+}
+
   module.exports = {
     registerEmployeeAdminDal,
     getAllEmployeeDal,
@@ -104,5 +180,14 @@ const updateEmployeeDal = async (id, reqBody) => {
     approveEmployeeLeaveDal,
     getAllStatusByTodayDal,
     fetchAllStatusByIdDal,
-    loginEmpOrAdminDal
+    loginEmpOrAdminDal,
+    addHolidayAdminDal,
+    getHolidayAdminDal,
+    getEmpLeaveDetailDal,
+    getHolidayByIdDal,
+    updateHolidayDal,
+    deleteHolidayDal,
+    employeeWorkStatusDal,
+    getemployeeWorkStatusDal,
+    viewEmployeeWorkStatusDal
   };

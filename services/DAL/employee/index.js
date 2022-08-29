@@ -21,11 +21,11 @@ const employeeAddStatusDal = async (reqBody) => {
       throw new MongoError(error);
   }
 }
-const employeeAllStatusDal = async () => {
+const employeeAllStatusDal = async (id) => {
       try {
-        let result = await employeeDao.allEmployeeStatus();
-        let addStatusData = JSON.parse(JSON.stringify(result));
-        return addStatusData;
+        let result = await employeeDao.allEmployeeStatus(id);
+        // let addStatusData = JSON.parse(JSON.stringify(result));
+        return result;
       } catch (error) {
           throw new MongoError(error);
       }
@@ -105,9 +105,9 @@ const punchStatusEmpDal = async (id) => {
     throw new MongoError(error);
   }
 }
-const punchStatusUpdateDal = async (id) =>{
+const punchStatusUpdateDal = async (reqBody) =>{
   try{
-    let punchStatusUpdateRes = await employeeDao.punchStatusUpdateModel(id);
+    let punchStatusUpdateRes = await employeeDao.punchStatusUpdateModel(reqBody);
     return punchStatusUpdateRes;
   }catch(error){
     throw new MongoError(error);
@@ -117,6 +117,15 @@ const employeeWorkStatusDal = async (id) =>{
   try{
     let employeeWorkStatusRes = await employeeDao.employeeWorkStatusModel(id);
     return employeeWorkStatusRes;
+  }catch(error){
+    throw new MongoError(error);
+  }
+}
+
+const getAbsentDayDal = async (id) =>{
+  try{
+    let getAbsentDayRes = await employeeDao.getAbsentDayModel(id);
+    return getAbsentDayRes;
   }catch(error){
     throw new MongoError(error);
   }
@@ -135,6 +144,7 @@ const employeeWorkStatusDal = async (id) =>{
     punchInEmpDal,
     punchStatusEmpDal,
     punchStatusUpdateDal,
-    employeeWorkStatusDal
+    employeeWorkStatusDal,
+    getAbsentDayDal
   
   };

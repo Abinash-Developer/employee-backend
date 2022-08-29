@@ -13,7 +13,8 @@ const {
     punchInEmpBL,
     punchStatusEmpBL,
     punchStatusUpdateBL,
-    employeeWorkStatusBL
+    employeeWorkStatusBL,
+    getAbsentDayBL
     
   } = require("../../services/BL/employee/index");
 
@@ -126,6 +127,16 @@ const workStatusEmployee = async (req, res, next) => {
     }
 }
 
+const getAbsentDay = async (req, res, next) =>{
+
+    try{
+        await getAbsentDayBL(req, res);
+        next();
+    }catch(error){
+        sendFailResponse(error, req, res);
+    }
+}
+
 module.exports = {
     employeeLeaveApply,
     employeeAddStatus,
@@ -139,5 +150,6 @@ module.exports = {
     punchInEmployee,
     punchStatusEmployee,
     punchStatusUpdate,
-    workStatusEmployee
+    workStatusEmployee,
+    getAbsentDay
 }

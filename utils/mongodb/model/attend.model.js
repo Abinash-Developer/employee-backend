@@ -5,35 +5,31 @@ const schema = new Schema({
         ref: "users",
         required: true
     },
+    name:{
+        type: String, 
+        required: false
+    },
       start_time:{
         type: String, 
-        required:true,
+        required: false
       },
       end_time:{
         type:String,
-        required:true,
+        required: false
       },
       punch_date:{
          type:String,
-         required: true
+         required: false
       },
       punch_status:{
         type:String,
-        required:true,
+        required: false
       },
       work_status:{
         type:String,
-        required:true,
-      },
-      latitude:{
-        type:String,
-        required:true,
-      },
-      longitude:{
-        type:String,
-        required:true,
+        required: false
       }
 },{ timestamps: true});
 
-const _model = model("PunchInStatus", schema);
+const _model = model("attendance", schema);
 module.exports = _model;

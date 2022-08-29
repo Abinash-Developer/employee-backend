@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const nodeCron = require("node-cron");
 // const { verifyToken } = require("../../utils/auth")
 
 const successResponseGenerator = require("../../utils/helper/sendSuccessResponse");
@@ -14,7 +15,16 @@ const { registerEmployeeAdminController,
       approveEmployeeLeave,
       getAllStatusByToday,
       fetchAllStatusById,
-      loginEmpOrAdmin
+      loginEmpOrAdmin,
+      addHoliday,
+      getHoliday,
+      getEmpLeaveDetail,
+      getHolidayById,
+      updateHoliday,
+      deleteHoliday,
+      employeeWorkStatus,
+      getemployeeWorkStatus,
+      viewEmptatus,
                } = require('../../controller/admin/index');
 
 router.post('/LOGIN',   loginEmpOrAdmin, successResponseGenerator);
@@ -31,6 +41,22 @@ router.patch('/APPROVEEMPLEAVE/:id?', approveEmployeeLeave, successResponseGener
 
 router.get('/GETALLSTATUSBYTODAY', getAllStatusByToday, successResponseGenerator);
 router.get('/FETCHALLSTATUSBYID/:id', fetchAllStatusById, successResponseGenerator);
+
+//Holiday Routes
+
+router.post('/ADDHOLIDAY', addHoliday, successResponseGenerator);
+router.get('/GETHOLIDAY', getHoliday, successResponseGenerator);
+router.get('/EMPLEAVEDETAIL/:id', getEmpLeaveDetail, successResponseGenerator);
+router.get('/GETHOLIDAYBYID/:id', getHolidayById, successResponseGenerator);
+router.patch('/UPDATEHOLIDAY/:id', updateHoliday, successResponseGenerator);
+router.get('/DELETEHOLIDAY/:id', deleteHoliday, successResponseGenerator);
+router.get('/EMPLOYEEWORKSTATUS', employeeWorkStatus, successResponseGenerator);
+router.get('/GETEMPLOYEESTATUS/:id', getemployeeWorkStatus, successResponseGenerator);
+router.get('/VIEWSTATUS/:id', viewEmptatus, successResponseGenerator);
+
+
+
+
 
 
 module.exports = router;

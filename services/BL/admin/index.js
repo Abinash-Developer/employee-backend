@@ -1,4 +1,4 @@
-const { registerEmployeeAdminDal,
+ const { registerEmployeeAdminDal,
     getAllEmployeeDal,
     getEmployeeByIdDal,
     updateEmployeeDal,
@@ -8,7 +8,16 @@ const { registerEmployeeAdminDal,
     approveEmployeeLeaveDal,
     getAllStatusByTodayDal,
     fetchAllStatusByIdDal,
-    loginEmpOrAdminDal
+    loginEmpOrAdminDal,
+    addHolidayAdminDal,
+    getHolidayAdminDal,
+    getEmpLeaveDetailDal,
+    getHolidayByIdDal,
+    updateHolidayDal,
+    deleteHolidayDal,
+    employeeWorkStatusDal,
+    getemployeeWorkStatusDal,
+    viewEmployeeWorkStatusDal
        } = require('../../DAL/admin/index');
 const sendFailResponse = require('../../../utils/helper/sendFailResponse');
 
@@ -106,6 +115,83 @@ const loginEmpOrAdminBL = async (req, res) => {
     }
 }
 
+const addHolidayAdminBL = async (req, res) => {
+    try{
+        const addHolidayResult = await addHolidayAdminDal(req.body);
+        res.locals.rootData = addHolidayResult;
+    }catch(error){
+       throw error;
+    }
+}
+
+const getHolidayAdminBL = async (req, res) => {
+    try{
+        const getHolidayResult = await getHolidayAdminDal();
+        res.locals.rootData = getHolidayResult;
+    }catch(error){
+       throw error;
+    } 
+}
+const getEmpLeaveDetailBL = async (req, res) => {
+    try{
+        const getEmpLeaveResult = await getEmpLeaveDetailDal(req.params.id);
+        res.locals.rootData = getEmpLeaveResult;
+    }catch(error){
+       throw error;
+    }  
+}
+
+const getHolidayByIdBL = async (req, res) => {
+    try{
+        const getholidayByIdResult = await getHolidayByIdDal(req.params.id);
+        res.locals.rootData = getholidayByIdResult;
+    }catch(error){
+       throw error;
+    }  
+}
+const updateHolidaydBL = async (req, res) => {
+    try{
+        const updateHolidayResult = await updateHolidayDal(req.body,req.params.id);
+        res.locals.rootData = updateHolidayResult;
+    }catch(error){
+       throw error;
+    }  
+}
+
+const deleteHolidayBL = async (req, res) => {
+    try{
+        const deleteHolidayResult = await deleteHolidayDal(req.params.id);
+        res.locals.rootData = deleteHolidayResult;
+    }catch(error){
+       throw error;
+    }  
+}
+
+const employeeWorkStatusBL = async (req, res) => {
+    try{
+        const employeeWorkStatusResult = await employeeWorkStatusDal();
+        res.locals.rootData = employeeWorkStatusResult;
+    }catch(error){
+       throw error;
+    }  
+}
+const getemployeeWorkStatusBL = async (req, res) => {
+    try{
+        const getemployeeWorkStatusResult = await getemployeeWorkStatusDal(req.params.id); 
+        res.locals.rootData = getemployeeWorkStatusResult;
+    }catch(error){
+       throw error;
+    }  
+}
+const viewEmployeeWorkStatusBL = async (req, res) => {
+    try{
+        const viewEmployeeWorkStatusResult = await viewEmployeeWorkStatusDal(req.params.id); 
+        res.locals.rootData = viewEmployeeWorkStatusResult;
+    }catch(error){
+       throw error;
+    }  
+}
+
 module.exports = {
     registerEmployeeAdminBL,
     getAllEmployeeAdminBL,
@@ -117,7 +203,16 @@ module.exports = {
     approveEmployeeLeaveBL,
     getAllStatusByTodayBL,
     fetchAllStatusByIdBL,
-    loginEmpOrAdminBL
+    loginEmpOrAdminBL,
+    addHolidayAdminBL,
+    getHolidayAdminBL,
+    getEmpLeaveDetailBL,
+    getHolidayByIdBL,
+    updateHolidaydBL,
+    deleteHolidayBL,
+    employeeWorkStatusBL,
+    getemployeeWorkStatusBL,
+    viewEmployeeWorkStatusBL
     
 }
   

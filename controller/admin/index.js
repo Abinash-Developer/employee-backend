@@ -11,7 +11,16 @@ const {
     approveEmployeeLeaveBL,
     getAllStatusByTodayBL,
     fetchAllStatusByIdBL,
-    loginEmpOrAdminBL
+    loginEmpOrAdminBL,
+    addHolidayAdminBL,
+    getHolidayAdminBL,
+    getEmpLeaveDetailBL,
+    getHolidayByIdBL,
+    updateHolidaydBL,
+    deleteHolidayBL,
+    employeeWorkStatusBL,
+    getemployeeWorkStatusBL,
+    viewEmployeeWorkStatusBL
   
   } = require("../../services/BL/admin");
 
@@ -107,6 +116,81 @@ const loginEmpOrAdmin = async (req, res, next) =>{
         sendFailResponse(error, req, res);
      }
 }
+const addHoliday = async (req, res, next) =>{
+    try{
+        await addHolidayAdminBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+const getHoliday = async (req, res, next) =>{
+    try{
+        await getHolidayAdminBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+const getEmpLeaveDetail = async (req, res, next) =>{
+    try{
+        await getEmpLeaveDetailBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+const getHolidayById = async (req, res, next) =>{
+    try{
+        await getHolidayByIdBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+const updateHoliday = async (req, res, next) => {
+    try{
+        await updateHolidaydBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+
+const deleteHoliday = async (req, res, next) => {
+    try{
+        await deleteHolidayBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+const employeeWorkStatus = async (req, res, next) => {
+    try{
+        await employeeWorkStatusBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+
+const getemployeeWorkStatus = async (req, res, next) => {
+    try{
+        await getemployeeWorkStatusBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+const viewEmptatus = async (req, res, next) => {
+    try{
+        await viewEmployeeWorkStatusBL(req, res);
+        next();
+     }catch(error){
+        sendFailResponse(error, req, res);
+     }
+}
+
 
 module.exports = {
     registerEmployeeAdminController,
@@ -119,5 +203,14 @@ module.exports = {
     approveEmployeeLeave,
     getAllStatusByToday,
     fetchAllStatusById,
-    loginEmpOrAdmin
+    loginEmpOrAdmin,
+    addHoliday,
+    getHoliday,
+    getEmpLeaveDetail,
+    getHolidayById,
+    updateHoliday,
+    deleteHoliday,
+    employeeWorkStatus,
+    getemployeeWorkStatus,
+    viewEmptatus,
 }

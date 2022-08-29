@@ -11,7 +11,8 @@ const {
     punchInEmpDal,
     punchStatusEmpDal,
     punchStatusUpdateDal,
-    employeeWorkStatusDal
+    employeeWorkStatusDal,
+    getAbsentDayDal
        } = require('../../DAL/employee/index');
 const sendFailResponse = require('../../../utils/helper/sendFailResponse');
 
@@ -34,7 +35,7 @@ const employeeAddStatusBL = async (req, res) =>{
 }
 const employeeAllStatusBL = async (req, res) =>{
     try {
-        let addEmpStatus = await employeeAllStatusDal(req.body);
+        let addEmpStatus = await employeeAllStatusDal(req.params.id);
         res.locals.rootData = addEmpStatus;
     } catch (error) {
         throw error;
@@ -111,7 +112,7 @@ const punchStatusEmpBL = async (req, res) => {
 }
 const punchStatusUpdateBL =async (req, res) =>{
     try{
-        let punchStatusUpdateRes = await punchStatusUpdateDal(req.params.id);
+        let punchStatusUpdateRes = await punchStatusUpdateDal(req.body);
         res.locals.rootData = punchStatusUpdateRes;
      }catch(error){
          throw error;
@@ -121,6 +122,15 @@ const employeeWorkStatusBL = async (req, res) =>{
     try{
         let employeeWorkStatusRes = await employeeWorkStatusDal(req.params.id);
         res.locals.rootData = employeeWorkStatusRes;
+     }catch(error){
+         throw error;
+     }
+}
+
+const getAbsentDayBL = async (req, res) =>{
+    try{
+        let getAbsentDayRes = await getAbsentDayDal(req.params.id);
+        res.locals.rootData = getAbsentDayRes;
      }catch(error){
          throw error;
      }
@@ -139,7 +149,8 @@ module.exports = {
     punchInEmpBL,
     punchStatusEmpBL,
     punchStatusUpdateBL,
-    employeeWorkStatusBL
+    employeeWorkStatusBL,
+    getAbsentDayBL
     
 }
   

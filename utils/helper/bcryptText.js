@@ -21,7 +21,8 @@ const encryptText = async (text) => {
 }
 
 const decryptText = async (text, hash) => {
-    console.log(hash)
+    console.log("Text",text);
+    console.log("Hashing",hash)
     let decrypted;
     let promise = new Promise((resolve, reject) => {
         bcrypt.compare(text, hash, (err, result) => {
